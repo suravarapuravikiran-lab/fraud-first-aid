@@ -110,15 +110,8 @@ class SpeechSynthesizer {
     }
 
     const tl = lang === 'te' ? 'te' : lang === 'hi' ? 'hi' : 'en';
-    const isLocalhost = typeof window !== 'undefined' && 
-      (window.location.hostname === 'localhost' || 
-       window.location.hostname === '127.0.0.1' || 
-       window.location.hostname.startsWith('10.') || 
-       window.location.hostname.startsWith('192.168.'));
-
-    const url = isLocalhost 
-      ? `/api/tts?tl=${tl}&q=${encodeURIComponent(cleanText)}`
-      : `https://translate.google.com/translate_tts?ie=UTF-8&tl=${tl}&client=tw-ob&q=${encodeURIComponent(cleanText)}`;
+    // /api/tts routes to Vite proxy in local dev, and to api/tts.ts serverless function in Vercel production
+    const url = `/api/tts?tl=${tl}&q=${encodeURIComponent(cleanText)}`;
 
     const audio = new Audio(url);
     audio.preload = 'auto';
