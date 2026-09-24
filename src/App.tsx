@@ -216,7 +216,7 @@ export const App: React.FC = () => {
             <span>Fraud First-Aid</span>
             <span>•</span>
             <span>Team Alpha Analysts:</span>
-            <span>S. Ravi Kiran (DVR & Dr. HS MIC College of Technology)</span>
+            <span>S. Ravi Kiran (Team Lead — DVR & Dr. HS MIC College of Technology)</span>
             <span>•</span>
             <span>H. Sai Yugesh (NRI Institute of Technology)</span>
             <span>•</span>
