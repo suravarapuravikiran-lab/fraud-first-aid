@@ -222,6 +222,9 @@ export const App: React.FC = () => {
             <span>•</span>
             <span>A. Muzeeb (DIET College)</span>
           </div>
+          <p className="text-xs text-slate-600 font-medium">
+            Good afternoon. We are Team Alpha Analysts from MIC, NRI, DIET Colleges
+          </p>
           <p className="text-[11px] text-slate-400">
             BASECAMP IDEATHON 2026 • Intelligent First-Hour Cyber Fraud Response System
           </p>

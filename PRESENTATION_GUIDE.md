@@ -8,7 +8,7 @@
 
 | Time | Action on Screen | What to Say |
 |---|---|---|
-| **0:00 - 0:15** | Open `http://localhost:5173/`. Point to **Sticky 1930 bar** & **Golden Hour Timer**. | *"When an online financial scam occurs, the first 60 minutes matter most. Fraud First-Aid is a guided emergency assistant that turns panic into structured action before the money leaves the banking grid."* |
+| **0:00 - 0:15** | Open `http://localhost:5173/`. Point to **Sticky 1930 bar** & **Golden Hour Timer**. | *"Good afternoon. We are Team Alpha Analysts from MIC, NRI, DIET Colleges. When an online financial scam occurs, the first 60 minutes matter most. Fraud First-Aid is a guided emergency assistant that turns panic into structured action before the money leaves the banking grid."* |
 | **0:15 - 0:30** | Switch language to **`తెలుగు`**. Move cursor over cards to demonstrate **Telugu Voice**. | *"Unlike existing English-first portals, we provide real-time voice guidance in authentic, conversational Andhra Telugu, making it accessible to students and families in tier-2 and tier-3 towns."* |
 | **0:30 - 0:50** | Click **`Demo 1 (Fake Job Telegram Scam)`** in the top black bar. | *"Our dynamic scenario engine adapts instantly. For this job scam, it asks only for Telegram recruiter handles and 12-digit UPI UTR—zero irrelevant questions, zero wasted time."* |
 | **0:50 - 1:10** | Advance to **Step 3 (Actions)** and **Step 4 (Report)**. Click **"Download Official PDF"**. | *"In under 60 seconds, the victim receives a prioritized emergency checklist and a standardized incident report docket, ready to share via WhatsApp, submit to cybercrime.gov.in, or hand over to their bank branch manager."* |
