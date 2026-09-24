@@ -1,6 +1,6 @@
 # Fraud First-Aid | Official Ideathon Presentation & Defense Guide
 **Basecamp Ideathon 2026** • **Team Alpha Analysts**  
-*(S. Ravi Kiran, H. Sai Yugesh, A. Muzeeb — NRI, MIC, DIET Colleges, Vijayawada)*
+*(S. Ravi Kiran — DVR & Dr. HS MIC College of Technology, H. Sai Yugesh — NRI Institute of Technology, A. Muzeeb — DIET College)*
 
 ---
 

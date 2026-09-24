@@ -4,8 +4,8 @@
 
 *Final-Year Engineering / Ideathon Project Prototype for Basecamp Ideathon 2026*  
 **Team Alpha Analysts:**
-- **S. Ravi Kiran** (NRI Institute of Technology)
-- **H. Sai Yugesh** (DVR & Dr. HS MIC College of Technology)
+- **S. Ravi Kiran** (DVR & Dr. HS MIC College of Technology)
+- **H. Sai Yugesh** (NRI Institute of Technology)
 - **A. Muzeeb** (DIET College)
 - *Location: Vijayawada, Andhra Pradesh, India*
 

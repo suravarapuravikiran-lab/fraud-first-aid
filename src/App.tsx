@@ -215,9 +215,12 @@ export const App: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-2 text-slate-700 font-bold">
             <span>Fraud First-Aid</span>
             <span>•</span>
-            <span>Team Alpha Analysts (S. Ravi Kiran, H. Sai Yugesh, A. Muzeeb)</span>
+            <span>Team Alpha Analysts:</span>
+            <span>S. Ravi Kiran (DVR & Dr. HS MIC College of Technology)</span>
             <span>•</span>
-            <span>NRI, MIC, DIET Colleges (Vijayawada)</span>
+            <span>H. Sai Yugesh (NRI Institute of Technology)</span>
+            <span>•</span>
+            <span>A. Muzeeb (DIET College)</span>
           </div>
           <p className="text-[11px] text-slate-400">
             BASECAMP IDEATHON 2026 • Intelligent First-Hour Cyber Fraud Response System
