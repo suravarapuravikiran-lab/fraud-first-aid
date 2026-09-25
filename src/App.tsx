@@ -11,9 +11,10 @@ import { Step3ImmediateActions } from './components/steps/Step3ImmediateActions'
 import { Step4ReportGenerator } from './components/steps/Step4ReportGenerator';
 import { Step5ReadinessReview } from './components/steps/Step5ReadinessReview';
 import { OfficialInfoModal } from './components/common/OfficialInfoModal';
+import { BankFreezeDirectoryModal } from './components/common/BankFreezeDirectoryModal';
 import { ToastContainer, ToastMessage } from './components/common/Toast';
 import { useCursorVoice } from './utils/useCursorVoice';
-import { ShieldCheck, Info, HeartHandshake } from 'lucide-react';
+import { ShieldCheck, Building2, Radio } from 'lucide-react';
 
 export const App: React.FC = () => {
   const {
@@ -40,6 +41,7 @@ export const App: React.FC = () => {
   } = useFraudStore();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBankDirectoryOpen, setIsBankDirectoryOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [cursorVoiceEnabled, setCursorVoiceEnabled] = useState<boolean>(true);
 
@@ -88,7 +90,11 @@ export const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
       {/* 1. Sticky Emergency 1930 Bar */}
-      <EmergencyBar t={t} onOpenPortalHelp={() => setIsModalOpen(true)} />
+      <EmergencyBar 
+        t={t} 
+        onOpenPortalHelp={() => setIsModalOpen(true)} 
+        onOpenBankDirectory={() => setIsBankDirectoryOpen(true)}
+      />
 
       {/* 2. Main Header */}
       <Header
@@ -169,6 +175,7 @@ export const App: React.FC = () => {
               onBack={() => setCurrentStep(2)}
               onNext={handleNextFromStep3}
               onSpeakPlan={() => triggerVoiceNarration(undefined, true)}
+              onOpenBankDirectory={() => setIsBankDirectoryOpen(true)}
               t={t}
             />
           )}
@@ -196,14 +203,22 @@ export const App: React.FC = () => {
           )}
         </div>
 
-        {/* Quick Directory Button */}
-        <div className="text-center pt-4">
+        {/* Quick Directory Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-4 text-xs font-bold">
+          <button
+            onClick={() => setIsBankDirectoryOpen(true)}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 transition-all shadow-xs"
+          >
+            <Building2 className="w-4 h-4 text-amber-600" />
+            <span>Instant Bank & App Freeze Directory (*99#)</span>
+          </button>
+
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand-blue transition-colors px-3 py-1.5 rounded-lg hover:bg-white"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 transition-all shadow-xs"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>View MHA Statistics, National Portals & Bank Helpline Directory</span>
+            <span>MHA CFCFRMS Statistics & Portals</span>
           </button>
         </div>
 
@@ -234,7 +249,15 @@ export const App: React.FC = () => {
         </div>
       </footer>
 
-      {/* Directory Modal */}
+      {/* Instant Bank & App Freeze Directory Modal */}
+      <BankFreezeDirectoryModal
+        isOpen={isBankDirectoryOpen}
+        onClose={() => setIsBankDirectoryOpen(false)}
+        onShowToast={addToast}
+        language={language}
+      />
+
+      {/* Official Government & MHA Info Modal */}
       <OfficialInfoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

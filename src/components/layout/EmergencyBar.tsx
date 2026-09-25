@@ -1,13 +1,14 @@
 import React from 'react';
-import { PhoneCall, ExternalLink, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { PhoneCall, ExternalLink, AlertTriangle, ShieldCheck, Building2 } from 'lucide-react';
 import { OFFICIAL_CHANNELS } from '../../data/emergencyContacts';
 
 interface EmergencyBarProps {
   t: any;
   onOpenPortalHelp?: () => void;
+  onOpenBankDirectory?: () => void;
 }
 
-export const EmergencyBar: React.FC<EmergencyBarProps> = ({ t, onOpenPortalHelp }) => {
+export const EmergencyBar: React.FC<EmergencyBarProps> = ({ t, onOpenPortalHelp, onOpenBankDirectory }) => {
   return (
     <div className="bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-alert">
       <div className="max-w-6xl mx-auto px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -33,23 +34,40 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ t, onOpenPortalHelp 
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2.5 w-full sm:w-auto justify-center">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full sm:w-auto justify-center">
+          {/* Bank Freeze Directory Button */}
+          {onOpenBankDirectory && (
+            <button
+              onClick={onOpenBankDirectory}
+              data-speak-te="బ్యాంక్ మరియు యూపీఐ యాప్ ఫ్రీజ్ డైరెక్టరీ"
+              data-speak-hi="बैंक और ऐप फ्रीज डायरेक्टरी"
+              data-speak-en="Open Instant Bank and App Freeze Directory"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold text-xs shadow-md transition-all active:scale-95 shrink-0"
+              title="Look up 1-tap emergency freeze numbers for SBI, HDFC, PhonePe, GPay, Paytm, etc."
+            >
+              <Building2 className="w-3.5 h-3.5 text-slate-900" />
+              <span>Bank Freeze Directory</span>
+            </button>
+          )}
+
+          {/* 1930 Helpline Button */}
           <a
             href="tel:1930"
             data-speak-te="అత్యవసర సైబర్ క్రైమ్ హెల్ప్‌లైన్ నంబర్ 1930 కి ఇప్పుడే కాల్ చేయండి"
             data-speak-hi="आपातकालीन राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 अभी डायल करें"
             data-speak-en="Call 1930 National Cyber Crime Reporting Helpline immediately"
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl bg-white text-red-600 font-extrabold text-sm hover:bg-red-50 active:scale-95 transition-all shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 rounded-xl bg-white text-red-600 font-extrabold text-sm hover:bg-red-50 active:scale-95 transition-all shadow-md hover:shadow-lg"
           >
             <PhoneCall className="w-4 h-4 text-red-600 fill-current animate-bounce" />
             <span>{t.call1930Sticky}</span>
           </a>
 
+          {/* National Portal */}
           <a
             href={OFFICIAL_CHANNELS.portalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/20 hover:bg-black/30 border border-white/20 text-xs font-semibold text-white transition-all"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-black/20 hover:bg-black/30 border border-white/20 text-xs font-semibold text-white transition-all"
             title="Open official Government of India portal"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-300" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Circle, PhoneCall, ExternalLink, ShieldAlert, Volume2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Circle, PhoneCall, ExternalLink, ShieldAlert, Volume2, Building2, Radio } from 'lucide-react';
 import { ActionItem, FraudCategory } from '../../types/fraud';
 import { FRAUD_SCENARIOS } from '../../data/scenarios';
 
@@ -10,6 +10,7 @@ interface Step3ImmediateActionsProps {
   onBack: () => void;
   onNext: () => void;
   onSpeakPlan: () => void;
+  onOpenBankDirectory?: () => void;
   t: any;
 }
 
@@ -20,6 +21,7 @@ export const Step3ImmediateActions: React.FC<Step3ImmediateActionsProps> = ({
   onBack,
   onNext,
   onSpeakPlan,
+  onOpenBankDirectory,
   t
 }) => {
   const scenario = FRAUD_SCENARIOS[category];
@@ -69,10 +71,44 @@ export const Step3ImmediateActions: React.FC<Step3ImmediateActionsProps> = ({
         </div>
       </div>
 
+      {/* Bank Freeze Directory Quick Banner */}
+      {onOpenBankDirectory && (
+        <div className="rounded-2xl border border-amber-300 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100/60 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <Building2 className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-xs text-amber-950">
+                  Instant Bank & App Freeze Directory
+                </span>
+                <span className="text-[10px] bg-amber-200/80 text-amber-900 font-bold px-1.5 py-0.2 rounded">
+                  1-Tap IVR / SMS / *99#
+                </span>
+              </div>
+              <p className="text-xs text-amber-800 mt-0.5">
+                Need to quickly block your account or cards in SBI, HDFC, ICICI, PhonePe, or Paytm?
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={onOpenBankDirectory}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs shadow-xs transition-all active:scale-95 shrink-0 self-end sm:self-auto"
+          >
+            <span>Open Freeze Directory</span>
+            <span>➔</span>
+          </button>
+        </div>
+      )}
+
       {/* Prioritized Checklist Cards */}
       <div className="space-y-3">
         {checklist.map((item, index) => {
           const isCritical = item.priority === 'CRITICAL';
+          const isBankFreezeItem = item.id === 'call_bank_freeze' || item.id === 'block_bank_cards_passwords';
 
           const teShortDescriptions: Record<string, string> = {
             call_1930: '1930 హెల్ప్‌లైన్‌కు వెంటనే కాల్ చేయండి. లావాదేవీని ఫ్రీజ్ చేయించండి.',
@@ -158,6 +194,19 @@ export const Step3ImmediateActions: React.FC<Step3ImmediateActionsProps> = ({
 
               {/* Right Action Buttons */}
               <div className="flex items-center gap-2 self-end sm:self-auto shrink-0" onClick={(e) => e.stopPropagation()}>
+                {/* Bank Directory Shortcut inside Bank freeze action */}
+                {isBankFreezeItem && onOpenBankDirectory && (
+                  <button
+                    type="button"
+                    onClick={onOpenBankDirectory}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold text-xs border border-amber-300 transition-all"
+                    title="Open Bank Freeze Directory"
+                  >
+                    <Building2 className="w-3.5 h-3.5" />
+                    <span>Banks & *99#</span>
+                  </button>
+                )}
+
                 {item.dialNumber && (
                   <a
                     href={`tel:${item.dialNumber}`}
