@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Volume2, VolumeX, Lock, RotateCcw, MousePointer, Award } from 'lucide-react';
+import { Shield, Volume2, VolumeX, Lock, RotateCcw, MousePointer, Award, ShieldCheck, Trash2 } from 'lucide-react';
 import { Language } from '../../types/fraud';
 
 interface HeaderProps {
@@ -13,6 +13,8 @@ interface HeaderProps {
   isSpeaking: boolean;
   onReset: () => void;
   onOpenQuiz?: () => void;
+  onOpenSecurity?: () => void;
+  onPanicWipe?: () => void;
   t: any;
 }
 
@@ -27,6 +29,8 @@ export const Header: React.FC<HeaderProps> = ({
   isSpeaking,
   onReset,
   onOpenQuiz,
+  onOpenSecurity,
+  onPanicWipe,
   t
 }) => {
   return (
@@ -53,8 +57,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Right Tools: Voice, Quiz, Language, Privacy Badge, Reset */}
-        <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+        {/* Right Tools: Voice, Quiz, Security, Panic Wipe, Language, Reset */}
+        <div className="flex items-center gap-2 sm:gap-2.5 ml-auto">
           {/* Scam Prevention Quiz Trigger */}
           {onOpenQuiz && (
             <button
@@ -67,14 +71,29 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
 
-          {/* 100% Client-Side Badge */}
-          <div 
-            className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"
-            title={t.privacyDesc}
-          >
-            <Lock className="w-3.5 h-3.5 text-emerald-600" />
-            <span>{t.privacyBadge}</span>
-          </div>
+          {/* Zero-Knowledge Security Architecture Trigger */}
+          {onOpenSecurity && (
+            <button 
+              onClick={onOpenSecurity}
+              className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold transition-all shadow-xs"
+              title="Click to view Zero-Knowledge Security & Privacy Audit specification"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Security Audit</span>
+            </button>
+          )}
+
+          {/* Emergency Session Panic Wipe */}
+          {onPanicWipe && (
+            <button
+              onClick={onPanicWipe}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-bold transition-all shadow-xs"
+              title="Emergency Panic Wipe: Purges all evidence, form entries, and session memory instantly"
+            >
+              <Trash2 className="w-3.5 h-3.5 text-red-600" />
+              <span className="hidden lg:inline">Panic Wipe</span>
+            </button>
+          )}
 
           {/* Voice Narrator Toggle */}
           <button
