@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Volume2, VolumeX, Lock, RotateCcw, MousePointer } from 'lucide-react';
+import { Shield, Volume2, VolumeX, Lock, RotateCcw, MousePointer, Award } from 'lucide-react';
 import { Language } from '../../types/fraud';
 
 interface HeaderProps {
@@ -12,6 +12,7 @@ interface HeaderProps {
   onSpeakCurrentStep?: () => void;
   isSpeaking: boolean;
   onReset: () => void;
+  onOpenQuiz?: () => void;
   t: any;
 }
 
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSpeakCurrentStep,
   isSpeaking,
   onReset,
+  onOpenQuiz,
   t
 }) => {
   return (
@@ -51,8 +53,20 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Right Tools: Voice, Language, Privacy Badge, Reset */}
+        {/* Right Tools: Voice, Quiz, Language, Privacy Badge, Reset */}
         <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+          {/* Scam Prevention Quiz Trigger */}
+          {onOpenQuiz && (
+            <button
+              onClick={onOpenQuiz}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 shadow-xs"
+              title="Test your fraud prevention knowledge"
+            >
+              <Award className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="hidden sm:inline">Scam Quiz</span>
+            </button>
+          )}
+
           {/* 100% Client-Side Badge */}
           <div 
             className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"

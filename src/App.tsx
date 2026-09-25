@@ -12,9 +12,10 @@ import { Step4ReportGenerator } from './components/steps/Step4ReportGenerator';
 import { Step5ReadinessReview } from './components/steps/Step5ReadinessReview';
 import { OfficialInfoModal } from './components/common/OfficialInfoModal';
 import { BankFreezeDirectoryModal } from './components/common/BankFreezeDirectoryModal';
+import { ScamQuizModal } from './components/common/ScamQuizModal';
 import { ToastContainer, ToastMessage } from './components/common/Toast';
 import { useCursorVoice } from './utils/useCursorVoice';
-import { ShieldCheck, Building2, Radio } from 'lucide-react';
+import { ShieldCheck, Building2, Award } from 'lucide-react';
 
 export const App: React.FC = () => {
   const {
@@ -42,6 +43,7 @@ export const App: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBankDirectoryOpen, setIsBankDirectoryOpen] = useState(false);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [cursorVoiceEnabled, setCursorVoiceEnabled] = useState<boolean>(true);
 
@@ -124,6 +126,7 @@ export const App: React.FC = () => {
           resetAll();
           addToast('info', 'Flow reset to baseline');
         }}
+        onOpenQuiz={() => setIsQuizOpen(true)}
         t={t}
       />
 
@@ -203,7 +206,7 @@ export const App: React.FC = () => {
           )}
         </div>
 
-        {/* Quick Directory Buttons */}
+        {/* Quick Tools & Prevention Bar */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-4 text-xs font-bold">
           <button
             onClick={() => setIsBankDirectoryOpen(true)}
@@ -214,11 +217,19 @@ export const App: React.FC = () => {
           </button>
 
           <button
+            onClick={() => setIsQuizOpen(true)}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-300 transition-all shadow-xs"
+          >
+            <Award className="w-4 h-4 text-indigo-600" />
+            <span>Cyber Safety Quiz (60-Sec Prevention Simulator)</span>
+          </button>
+
+          <button
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 transition-all shadow-xs"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>MHA CFCFRMS Statistics & Portals</span>
+            <span>MHA Statistics & Portals</span>
           </button>
         </div>
 
@@ -254,6 +265,13 @@ export const App: React.FC = () => {
         isOpen={isBankDirectoryOpen}
         onClose={() => setIsBankDirectoryOpen(false)}
         onShowToast={addToast}
+        language={language}
+      />
+
+      {/* Scam Prevention & Simulator Quiz Modal */}
+      <ScamQuizModal
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
         language={language}
       />
 
